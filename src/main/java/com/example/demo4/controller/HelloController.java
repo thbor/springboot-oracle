@@ -4,20 +4,21 @@ import com.example.demo4.dto.HelloDto;
 import com.example.demo4.dto.User;
 import com.example.demo4.service.HelloService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 //返回json格式数据
 @RestController
+@RequestMapping("Hello")
 @CrossOrigin(origins = "*",maxAge = 3600)
 public class HelloController {
-    @Resource
-    private HelloService helloServic;
+    @Autowired
+    private HelloService helloService;
 
 
 //    @RequestMapping("/hello")
@@ -37,7 +38,7 @@ public class HelloController {
     @ResponseBody
     public List<HelloDto> testSql(){
         System.err.println("controller");
-        return helloServic.getCramping();
+        return helloService.getCramping();
     }
 }
 
