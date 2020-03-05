@@ -39,7 +39,7 @@ import java.util.Base64;
 @RequestMapping("auth")
 public class AuthController {
     @Autowired
-    UserAndPermissionService userAndPermissionService;
+    private UserAndPermissionService userAndPermissionService;
     @GetMapping("/getAccessToken")
     public MessageInfo getAccessToken(@RequestParam String code, String redirect_uri) {
 

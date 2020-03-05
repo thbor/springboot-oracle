@@ -2,29 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo4.Mapper.UserAndPermissionMapper">
 
-	<!-- 查詢用戶權限 -->
-	<select id="getUserRoles" parameterType="string"
-			resultType="com.example.demo4.dto.UserRoleDTO">
-SELECT u.user_id,e.power_id,e.power_role FROM User_Power_Link u INNER JOIN Power_Info e ON u.power_id = e.power_id
-where u.deleted_on is null and u.user_id = #{userId}
-	</select>
-
-        <!-- 查詢其他所有用戶(根據廠區/產品處) -->
-    <select id="selectUserList" parameterType="string" resultType="userInfo">
-		select * FROM USER_INFO
-		<where>
-			<if test="factoryNo != null and factoryNo != ''">
-				factoryNo = #{factoryNo}
-			</if>
-			<if test="punit != null and punit != ''">
-				and punit = #{punit}
-			</if>
-
-		</where>
-	</select>
 
 	<!-- 用accessToken查詢当前用戶详细信息 -->
-	<select id="getCurrentUserInfoByWorkId" parameterType="string" resultType="UserInfo">
+	<select id="getCurrentUserInfoByWorkId" parameterType="string" resultType="com.example.demo4.dto.UserInfo">
 		select * FROM USER_INFO u where u.USER_NO = #{userId}
 	</select>
 

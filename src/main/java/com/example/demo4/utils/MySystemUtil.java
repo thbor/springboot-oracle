@@ -1,12 +1,7 @@
 package com.example.demo4.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.demo4.vo.MessageInfo;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -72,23 +67,6 @@ public class MySystemUtil {
         return  josn.toJSONString();
     }
 
-    public static String getUserIdByToken(){
-        String token = "";
-        //獲得token
-        Object details = SecurityContextHolder.getContext().getAuthentication().getDetails();
-        if (details instanceof OAuth2AuthenticationDetails) {
-            OAuth2AuthenticationDetails oauthsDetails = (OAuth2AuthenticationDetails) details;
-            token = oauthsDetails.getTokenValue();
-        }
-        try {
-            DecodedJWT jwt = JWT.decode(token);
-            return  jwt.getSubject();
-        } catch (JWTDecodeException exception){
-            //Invalid token
-            exception.printStackTrace();
-        }
-        return "";
-    }
 
     /**
      * 获取系统时间
